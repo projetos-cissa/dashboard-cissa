@@ -1,0 +1,67 @@
+{
+    "Sheet1": {
+        "columns": [
+            "Nome completo com link",
+            "Endereço de e-mail",
+            "Status",
+            "Progresso do estudante",
+            "Concluído",
+            "Tempo de inscrição",
+            "Dias até a conclusão",
+            "Último acesso ao curso"
+        ],
+        "rows": 28,
+        "sample": [
+            {
+                "Nome completo com link": "Ana Karine",
+                "Endereço de e-mail": "akbc@cesar.org.br",
+                "Status": "Ativo",
+                "Progresso do estudante": "0,0%",
+                "Concluído": "Não",
+                "Tempo de inscrição": "quarta-feira, 14 jan. 2026, 14:18",
+                "Dias até a conclusão": "26 dias 2 horas",
+                "Último acesso ao curso": "Nunca"
+            },
+            {
+                "Nome completo com link": "Anna Clara Fornellos Almeida",
+                "Endereço de e-mail": "acfa2@cesar.school",
+                "Status": "Ativo",
+                "Progresso do estudante": "0,0%",
+                "Concluído": "Não",
+                "Tempo de inscrição": "quarta-feira, 21 jan. 2026, 14:28",
+                "Dias até a conclusão": "19 dias 2 horas",
+                "Último acesso ao curso": "Nunca"
+            },
+            {
+                "Nome completo com link": "Byron Lanverly",
+                "Endereço de e-mail": "bllmj@cesar.org.br",
+                "Status": "Ativo",
+                "Progresso do estudante": "0,0%",
+                "Concluído": "Não",
+                "Tempo de inscrição": "quarta-feira, 21 jan. 2026, 14:27",
+                "Dias até a conclusão": "19 dias 2 horas",
+                "Último acesso ao curso": "Nunca"
+            },
+            {
+                "Nome completo com link": "Carlos Roberto Gonçalves Viana Filho",
+                "Endereço de e-mail": "crgvf@cesar.org.br",
+                "Status": "Ativo",
+                "Progresso do estudante": "0,0%",
+                "Concluído": "Não",
+                "Tempo de inscrição": "quarta-feira, 21 jan. 2026, 14:25",
+                "Dias até a conclusão": "19 dias 2 horas",
+                "Último acesso ao curso": "Nunca"
+            },
+            {
+                "Nome completo com link": "Claudia Cunha",
+                "Endereço de e-mail": "cmac@cesar.org.br",
+                "Status": "Ativo",
+                "Progresso do estudante": "0,0%",
+                "Concluído": "Não",
+                "Tempo de inscrição": "quarta-feira, 21 jan. 2026, 14:28",
+                "Dias até a conclusão": "19 dias 2 horas",
+                "Último acesso ao curso": "Nunca"
+            }
+        ]
+    }
+}

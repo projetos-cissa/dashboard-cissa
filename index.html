@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CISSA - Dashboard de Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #FF7F00 0%, #ff9f40 100%);
+            --bg-dark: #282828;
+            --card-bg: #353535;
+            --text-main: #f8fafc;
+            --text-muted: #a1a1aa;
+            --accent: #FF7F00;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 127, 0, 0.4);
+        }
+
+        .metric-card .label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-yes {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .status-no {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container animate-fade">
+        <header>
+            <div class="logo">
+                <h1>CISSA <span style="font-weight: 400; color: var(--text-muted); font-size: 1rem;">| Ciber para
+                        Empreendedores</span></h1>
+            </div>
+            <div class="date-info" style="color: var(--text-muted); font-size: 0.875rem;">
+                Relatório de Acompanhamento - Março 2026
+            </div>
+        </header>
+
+        <div class="metrics-grid" id="metrics-container"></div>
+
+        <div class="charts-grid">
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem;">Distribuição de Progresso</h3>
+                <canvas id="progressChart"></canvas>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem;">Status de Conclusão</h3>
+                <canvas id="completionChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Detalhamento por Estudante</h3>
+                <input type="text" id="studentSearch" placeholder="Buscar estudante..."
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; outline: none;">
+            </div>
+            <div class="table-container">
+                <table id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Progresso</th>
+                            <th>Concluído</th>
+                            <th>Último Acesso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dashboardData = {
+    "metrics": {
+        "total_students": 43,
+        "completed_students": 4,
+        "active_students": 43,
+        "never_accessed": 22,
+        "never_accessed_rate": "51.2%",
+        "avg_progress": "10.2%",
+        "completion_rate": "9.3%"
+    },
+    "progress_dist": {
+        "0%": 37,
+        "1-50%": 2,
+        "51-99%": 0,
+        "100%": 4
+    },
+    "students": [
+        {
+            "Nome completo com link": "Amaro Mota de Vasconcelos Júnior",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Ana Karine",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "André Luis Freire de Andrade Sieczko",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "terça-feira, 10 mar. 2026, 23:08"
+        },
+        {
+            "Nome completo com link": "Anna Clara Fornellos Almeida",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Arthur Vinicíus Vieira Ventura",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Byron Lanverly",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Carlos Roberto Gonçalves Viana Filho",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Carlos Vinicius Alves de Figueiredo",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Cassian Vasconcelos Ferrari",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Claudia Cunha",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Damião de Oliveira Melo Neto",
+            "Progresso do estudante": "100,0%",
+            "Concluído": "Sim",
+            "Último acesso ao curso": "quarta-feira, 4 mar. 2026, 10:04"
+        },
+        {
+            "Nome completo com link": "Danilo Galindo",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "sexta-feira, 20 fev. 2026, 10:15"
+        },
+        {
+            "Nome completo com link": "Eduardo Henrique Ferreira Fonseca Barbosa",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Eiran Simis",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "segunda-feira, 23 mar. 2026, 15:21"
+        },
+        {
+            "Nome completo com link": "Eiran Simis Pessoal",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "segunda-feira, 2 mar. 2026, 10:30"
+        },
+        {
+            "Nome completo com link": "ELIZABETH ANDRADE DE SOUZA ESMERALDO",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "terça-feira, 10 fev. 2026, 21:19"
+        },
+        {
+            "Nome completo com link": "Evandro José Rodrigues Torres Zacarias",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "quinta-feira, 22 jan. 2026, 14:16"
+        },
+        {
+            "Nome completo com link": "Eveline Cavalcanti",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "quinta-feira, 19 mar. 2026, 20:19"
+        },
+        {
+            "Nome completo com link": "Fernando Brito",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "segunda-feira, 16 mar. 2026, 16:33"
+        },
+        {
+            "Nome completo com link": "Gabriela Lins de Amorim Viana",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Geilson Nascimento Silva",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Gustavo de Castro Biage",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "segunda-feira, 26 jan. 2026, 08:31"
+        },
+        {
+            "Nome completo com link": "Igor Fugagnoli Baptista do Rêgo",
+            "Progresso do estudante": "100,0%",
+            "Concluído": "Sim",
+            "Último acesso ao curso": "terça-feira, 10 mar. 2026, 09:41"
+        },
+        {
+            "Nome completo com link": "Jacque Tamboo",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "sexta-feira, 20 mar. 2026, 14:26"
+        },
+        {
+            "Nome completo com link": "Jonathas Silva",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "terça-feira, 27 jan. 2026, 08:42"
+        },
+        {
+            "Nome completo com link": "Letícia Cordeiro dos Santos",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Lucas dos Santos",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Luciano Cabral",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "sexta-feira, 13 fev. 2026, 16:46"
+        },
+        {
+            "Nome completo com link": "Maria Clara Medeiros Pessoa de Melo",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Mário Sérgio Farias de Mattos Dias",
+            "Progresso do estudante": "100,0%",
+            "Concluído": "Sim",
+            "Último acesso ao curso": "sexta-feira, 27 mar. 2026, 09:43"
+        },
+        {
+            "Nome completo com link": "Matheus Vilarim Pereira dos Santos",
+            "Progresso do estudante": "100,0%",
+            "Concluído": "Sim",
+            "Último acesso ao curso": "quarta-feira, 4 fev. 2026, 16:33"
+        },
+        {
+            "Nome completo com link": "Miguel Cabral",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Paulo Eduardo Pinto Pessoa Coelho",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Pedro Liberal",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Pedro de Araújo Duarte Gusmão",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Rafael Roque",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "quinta-feira, 22 jan. 2026, 15:15"
+        },
+        {
+            "Nome completo com link": "Rafael Bezerra Ferreira",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Rafael Moreira Peixoto",
+            "Progresso do estudante": "20,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "domingo, 29 mar. 2026, 16:07"
+        },
+        {
+            "Nome completo com link": "Sérgio Luís Oliveira dos Santos",
+            "Progresso do estudante": "20,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "segunda-feira, 9 mar. 2026, 21:06"
+        },
+        {
+            "Nome completo com link": "Silvio Barros Tenório",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        },
+        {
+            "Nome completo com link": "Thays Maria da Conceição Silva Carvalho",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "quinta-feira, 5 mar. 2026, 19:47"
+        },
+        {
+            "Nome completo com link": "Victor Matheus Cavalcanti de Albuquerque",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "quinta-feira, 29 jan. 2026, 16:23"
+        },
+        {
+            "Nome completo com link": "Vinícius Bernardo da Silva",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "Nunca"
+        }
+    ]
+};
+
+
+        function initDashboard() {
+            renderMetrics(dashboardData.metrics);
+            renderCharts(dashboardData);
+            renderTable(dashboardData.students);
+
+            document.getElementById('studentSearch').addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const filtered = dashboardData.students.filter(s =>
+                    s['Nome completo com link'].toLowerCase().includes(term)
+                );
+                renderTable(filtered);
+            });
+        }
+
+        function renderMetrics(metrics) {
+            const container = document.getElementById('metrics-container');
+            const items = [
+                { label: 'Total de Estudantes', value: metrics.total_students, color: 'var(--accent)' },
+                { label: 'Nunca Acessaram', value: metrics.never_accessed_rate, color: 'var(--danger)' },
+                { label: 'Taxa de Conclusão', value: metrics.completion_rate, color: 'var(--primary-gradient)' },
+                { label: 'Progresso Médio', value: metrics.avg_progress, color: 'var(--warning)' }
+            ];
+
+            container.innerHTML = items.map(metric => `
+                <div class="card metric-card">
+                    <div class="label">${metric.label}</div>
+                    <div class="value" style="${metric.label === 'Taxa de Conclusão' ? 'background: ' + metric.color + '; -webkit-background-clip: text; -webkit-text-fill-color: transparent;' : 'color: ' + metric.color}">${metric.value}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderCharts(data) {
+            const total = data.metrics.total_students;
+            const ctxProgress = document.getElementById('progressChart').getContext('2d');
+            new Chart(ctxProgress, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(data.progress_dist),
+                    datasets: [{
+                        label: 'Número de Estudantes',
+                        data: Object.values(data.progress_dist),
+                        backgroundColor: 'rgba(255, 127, 0, 0.6)',
+                        borderColor: '#FF7F00',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const value = context.raw;
+                                    const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                    return `${context.dataset.label}: ${value} (${percentage})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#a1a1aa' } },
+                        x: { grid: { display: false }, ticks: { color: '#a1a1aa' } }
+                    }
+                }
+            });
+
+            const ctxCompletion = document.getElementById('completionChart').getContext('2d');
+            new Chart(ctxCompletion, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Concluído', 'Em Andamento'],
+                    datasets: [{
+                        data: [data.metrics.completed_students, total - data.metrics.completed_students],
+                        backgroundColor: ['#FF7F00', 'rgba(255,255,255,0.05)'],
+                        borderColor: ['#FF7F00', 'rgba(255,255,255,0.1)'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#a1a1aa', padding: 20 } },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const value = context.raw;
+                                    const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                    return `${context.label}: ${value} (${percentage})`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTable(students) {
+            const tbody = document.getElementById('studentsBody');
+            tbody.innerHTML = students.map(s => {
+                const progValue = s['Progresso do estudante'].replace(',', '.');
+                return `
+                    <tr>
+                        <td>${s['Nome completo com link']}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 100px; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden;">
+                                    <div style="width: ${progValue}; height: 100%; background: var(--primary-gradient);"></div>
+                                </div>
+                                <span style="font-size: 0.75rem;">${s['Progresso do estudante']}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status-badge ${s['Concluído'] === 'Sim' ? 'status-yes' : 'status-no'}">
+                                ${s['Concluído']}
+                            </span>
+                        </td>
+                        <td style="color: var(--text-muted); font-size: 0.875rem;">${s['Último acesso ao curso']}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+
+</html>
