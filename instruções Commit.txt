@@ -1,0 +1,8 @@
+Lá na sua pasta, você vai notar que criei o arquivinho chamado atualiza.bat. De agora em diante, seu único trabalho será:
+
+Recebeu a planilha atualizada lá da sua plataforma do curso? Salva ela por cima do seu .xlsx atual na sua pastinha.
+Dá dois cliques no arquivo atualiza.bat.
+
+Uma janelinha vai abrir mostrando tudo dando certo e fará uma perguntinha final ("Deseja enviar agora a nova atualizacao? S/N")... Digite S e solte o Enter.
+A
+cabou! Ele vai rodar o código, empurrar os dados fresquinhos lá pra nuvem sozinho e em minutos seu site no mesmo link estará refletindo os números reais!

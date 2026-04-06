@@ -1,18 +1,18 @@
 {
     "metrics": {
         "total_students": 43,
-        "completed_students": 4,
-        "active_students": 43,
+        "completed_students": 5,
+        "active_students": 42,
         "never_accessed": 22,
         "never_accessed_rate": "51.2%",
-        "avg_progress": "10.2%",
-        "completion_rate": "9.3%"
+        "avg_progress": "12.1%",
+        "completion_rate": "11.6%"
     },
     "progress_dist": {
         "0%": 37,
-        "1-50%": 2,
+        "1-50%": 1,
         "51-99%": 0,
-        "100%": 4
+        "100%": 5
     },
     "students": [
         {
@@ -181,7 +181,7 @@
             "Nome completo com link": "Luciano Cabral",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
-            "Último acesso ao curso": "sexta-feira, 13 fev. 2026, 16:46"
+            "Último acesso ao curso": "terça-feira, 31 mar. 2026, 09:22"
         },
         {
             "Nome completo com link": "Maria Clara Medeiros Pessoa de Melo",
@@ -245,9 +245,9 @@
         },
         {
             "Nome completo com link": "Sérgio Luís Oliveira dos Santos",
-            "Progresso do estudante": "20,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "segunda-feira, 9 mar. 2026, 21:06"
+            "Progresso do estudante": "100,0%",
+            "Concluído": "Sim",
+            "Último acesso ao curso": "segunda-feira, 30 mar. 2026, 15:42"
         },
         {
             "Nome completo com link": "Silvio Barros Tenório",
