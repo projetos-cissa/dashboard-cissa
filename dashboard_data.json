@@ -1,274 +1,142 @@
 {
     "metrics": {
-        "total_students": 43,
-        "completed_students": 5,
-        "active_students": 42,
-        "never_accessed": 22,
-        "never_accessed_rate": "51.2%",
-        "avg_progress": "12.1%",
-        "completion_rate": "11.6%"
+        "total_students": 21,
+        "completed_students": 1,
+        "active_students": 21,
+        "never_accessed": 17,
+        "never_accessed_rate": "81.0%",
+        "avg_progress": "4.9%",
+        "completion_rate": "4.8%"
     },
     "progress_dist": {
-        "0%": 37,
+        "0%": 19,
         "1-50%": 1,
         "51-99%": 0,
-        "100%": 5
+        "100%": 1
     },
     "students": [
         {
-            "Nome completo com link": "Amaro Mota de Vasconcelos Júnior",
+            "Nome completo com link": "Carlos Augusto Vieira de Carvalho Rossi",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Ana Karine",
+            "Nome completo com link": "Caroline Miranda Pereira Lima",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "André Luis Freire de Andrade Sieczko",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "terça-feira, 10 mar. 2026, 23:08"
-        },
-        {
-            "Nome completo com link": "Anna Clara Fornellos Almeida",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Arthur Vinicíus Vieira Ventura",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Byron Lanverly",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Carlos Roberto Gonçalves Viana Filho",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Carlos Vinicius Alves de Figueiredo",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Cassian Vasconcelos Ferrari",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Claudia Cunha",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "Nunca"
-        },
-        {
-            "Nome completo com link": "Damião de Oliveira Melo Neto",
-            "Progresso do estudante": "100,0%",
-            "Concluído": "Sim",
-            "Último acesso ao curso": "quarta-feira, 4 mar. 2026, 10:04"
-        },
-        {
-            "Nome completo com link": "Danilo Galindo",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "sexta-feira, 20 fev. 2026, 10:15"
-        },
-        {
-            "Nome completo com link": "Eduardo Henrique Ferreira Fonseca Barbosa",
+            "Nome completo com link": "Charllynson Carvalho Caxias",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
             "Nome completo com link": "Eiran Simis",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "segunda-feira, 23 mar. 2026, 15:21"
+            "Progresso do estudante": "100,0%",
+            "Concluído": "Sim",
+            "Último acesso ao curso": "terça-feira, 22 set. 2026, 16:31"
         },
         {
             "Nome completo com link": "Eiran Simis Pessoal",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
-            "Último acesso ao curso": "segunda-feira, 2 mar. 2026, 10:30"
+            "Último acesso ao curso": "terça-feira, 22 set. 2026, 14:09"
         },
         {
-            "Nome completo com link": "ELIZABETH ANDRADE DE SOUZA ESMERALDO",
+            "Nome completo com link": "Emerson Ribeiro de Mello",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
-            "Último acesso ao curso": "terça-feira, 10 fev. 2026, 21:19"
+            "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Evandro José Rodrigues Torres Zacarias",
+            "Nome completo com link": "Evelin Elena Duarte Limeira",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
-            "Último acesso ao curso": "quinta-feira, 22 jan. 2026, 14:16"
+            "Último acesso ao curso": "Nunca"
         },
         {
             "Nome completo com link": "Eveline Cavalcanti",
-            "Progresso do estudante": "0,0%",
+            "Progresso do estudante": "3,8%",
             "Concluído": "Não",
-            "Último acesso ao curso": "quinta-feira, 19 mar. 2026, 20:19"
+            "Último acesso ao curso": "quinta-feira, 24 set. 2026, 12:22"
         },
         {
-            "Nome completo com link": "Fernando Brito",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "segunda-feira, 16 mar. 2026, 16:33"
-        },
-        {
-            "Nome completo com link": "Gabriela Lins de Amorim Viana",
+            "Nome completo com link": "Felipe Silveira de Almeida",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Geilson Nascimento Silva",
+            "Nome completo com link": "Frederico Schardong",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Gustavo de Castro Biage",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "segunda-feira, 26 jan. 2026, 08:31"
-        },
-        {
-            "Nome completo com link": "Igor Fugagnoli Baptista do Rêgo",
-            "Progresso do estudante": "100,0%",
-            "Concluído": "Sim",
-            "Último acesso ao curso": "terça-feira, 10 mar. 2026, 09:41"
-        },
-        {
-            "Nome completo com link": "Jacque Tamboo",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "sexta-feira, 20 mar. 2026, 14:26"
-        },
-        {
-            "Nome completo com link": "Jonathas Silva",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "terça-feira, 27 jan. 2026, 08:42"
-        },
-        {
-            "Nome completo com link": "Letícia Cordeiro dos Santos",
+            "Nome completo com link": "Isis Nascimento de Lavor",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Lucas dos Santos",
+            "Nome completo com link": "Jane Piantoni",
+            "Progresso do estudante": "0,0%",
+            "Concluído": "Não",
+            "Último acesso ao curso": "quarta-feira, 16 set. 2026, 13:43"
+        },
+        {
+            "Nome completo com link": "João Jardim Neto",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Luciano Cabral",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "terça-feira, 31 mar. 2026, 09:22"
-        },
-        {
-            "Nome completo com link": "Maria Clara Medeiros Pessoa de Melo",
+            "Nome completo com link": "Marilia de Matos Biz",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Mário Sérgio Farias de Mattos Dias",
-            "Progresso do estudante": "100,0%",
-            "Concluído": "Sim",
-            "Último acesso ao curso": "sexta-feira, 27 mar. 2026, 09:43"
-        },
-        {
-            "Nome completo com link": "Matheus Vilarim Pereira dos Santos",
-            "Progresso do estudante": "100,0%",
-            "Concluído": "Sim",
-            "Último acesso ao curso": "quarta-feira, 4 fev. 2026, 16:33"
-        },
-        {
-            "Nome completo com link": "Miguel Cabral",
+            "Nome completo com link": "Rafael Santa Rosa Alves",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Paulo Eduardo Pinto Pessoa Coelho",
+            "Nome completo com link": "Rafhael Josino Lima",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Pedro Liberal",
+            "Nome completo com link": "Rogerio Ruivo",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Pedro de Araújo Duarte Gusmão",
+            "Nome completo com link": "Sidnei Barbieri",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Rafael Roque",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "quinta-feira, 22 jan. 2026, 15:15"
-        },
-        {
-            "Nome completo com link": "Rafael Bezerra Ferreira",
+            "Nome completo com link": "Tiago William de Morais",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Rafael Moreira Peixoto",
-            "Progresso do estudante": "20,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "domingo, 29 mar. 2026, 16:07"
-        },
-        {
-            "Nome completo com link": "Sérgio Luís Oliveira dos Santos",
-            "Progresso do estudante": "100,0%",
-            "Concluído": "Sim",
-            "Último acesso ao curso": "segunda-feira, 30 mar. 2026, 15:42"
-        },
-        {
-            "Nome completo com link": "Silvio Barros Tenório",
+            "Nome completo com link": "Vinícius Fernandes de Souza",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
         },
         {
-            "Nome completo com link": "Thays Maria da Conceição Silva Carvalho",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "quinta-feira, 5 mar. 2026, 19:47"
-        },
-        {
-            "Nome completo com link": "Victor Matheus Cavalcanti de Albuquerque",
-            "Progresso do estudante": "0,0%",
-            "Concluído": "Não",
-            "Último acesso ao curso": "quinta-feira, 29 jan. 2026, 16:23"
-        },
-        {
-            "Nome completo com link": "Vinícius Bernardo da Silva",
+            "Nome completo com link": "Ying Hsiao Fen",
             "Progresso do estudante": "0,0%",
             "Concluído": "Não",
             "Último acesso ao curso": "Nunca"
